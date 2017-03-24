@@ -1,6 +1,5 @@
 package com.thomas.frontend;
 
-import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,11 +7,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.jsonpersistent.JsonPersistent;
+import com.example.jsonpersistent.PersistenceManager;
 import com.example.queuelibrary.QueueObjectConverter;
 import com.example.queuelibrary.SQLiteBusSubscriber;
 import com.example.queuelibrary.SQLitePersistentQueue;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 public class MainActivity extends AppCompatActivity {
     private final static String TAG = MainActivity.class.getSimpleName();
@@ -41,6 +45,22 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public String loadJSONFromAsset(String fileName) {
+        String json = null;
+        try {
+            InputStream is = getAssets().open("offline/" + fileName);
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            json = new String(buffer, "UTF-8");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        return json;
+    }
+
     private void addToQueue(SQLitePersistentQueue queue) {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("id", "123");
@@ -49,6 +69,17 @@ public class MainActivity extends AppCompatActivity {
 
         Payload payload = new Payload("1", "2", "3");
         queue.add(payload);
+
+
+
+
+        String info = "info.json";
+        String sample = "sample.json";
+
+        String information = loadJSONFromAsset(info);
+        String content = loadJSONFromAsset(sample);
+
+        PersistenceManager.updateTables(this, information);
     }
 
 

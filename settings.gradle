@@ -1,1 +1,1 @@
-include ':app', ':queuelibrary'
+include ':app', ':queuelibrary', ':jsonpersistent'

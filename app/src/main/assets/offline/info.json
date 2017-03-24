@@ -1,0 +1,24 @@
+{
+    "resp_data":[
+        {
+            "offlinemodelcode": "001", // 离线对象code
+            "offlinemodelname": "苹果" // 名称
+        },
+        {
+            "offlinemodelcode": "002", // 离线对象code
+            "offlinemodelname": "梨子" // 名称
+        },
+        {
+            "offlinemodelcode": "003", // 离线对象code
+            "offlinemodelname": "菠萝" // 名称
+        },
+        {
+            "offlinemodelcode": "004", // 离线对象code
+            "offlinemodelname": "西瓜" // 名称
+        },
+        {
+            "offlinemodelcode": "005", // 离线对象code
+            "offlinemodelname": "哈密瓜" // 名称
+        }
+    ]
+}
