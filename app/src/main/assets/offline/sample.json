@@ -1,0 +1,76 @@
+{
+  "resp_data":[
+    {
+      "metadata":{
+        "offlinemodelcode": "001", //对象名
+        "columns":[
+          {
+            "name": "", // 字段名
+            "type": "", // 字段类型
+            "length": "", // 字段长度
+            "pk": "",   // 主键
+            "notNull": "" // 必填
+          }
+        ]
+      },
+      "records":[
+        {
+          "name": "1",
+          "type": "online",
+          "length": "10",
+          "pk": "111",
+          "notNull": "嘿嘿"
+        },
+        {
+          "name": "2",
+          "type": "online",
+          "length": "10",
+          "pk": "111",
+          "notNull": "haha"
+        },
+        {
+          "name": "3",
+          "type": "online",
+          "length": "10",
+          "pk": "111",
+          "notNull": "hehe"
+        },
+        {
+          "name": "4",
+          "type": "online",
+          "length": "10",
+          "pk": "111",
+          "notNull": "daji"
+        },
+        {
+          "name": "5",
+          "type": "online",
+          "length": "10",
+          "pk": "111",
+          "notNull": "adsfasd"
+        },
+        {
+          "name": "6",
+          "type": "online",
+          "length": "10",
+          "pk": "111",
+          "notNull": "嘿ddd嘿"
+        },
+        {
+          "name": "7",
+          "type": "online",
+          "length": "10",
+          "pk": "111",
+          "notNull": "嘿ff嘿"
+        },
+        {
+          "name": "8",
+          "type": "online",
+          "length": "10",
+          "pk": "111",
+          "notNull": "嘿嘿aa"
+        }
+      ]
+    }
+  ]
+}
