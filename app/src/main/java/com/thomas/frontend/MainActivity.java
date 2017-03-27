@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.jsonpersistent.JsonPersistent;
 import com.example.jsonpersistent.PersistenceManager;
 import com.example.queuelibrary.QueueObjectConverter;
 import com.example.queuelibrary.SQLiteBusSubscriber;
@@ -78,8 +77,6 @@ public class MainActivity extends AppCompatActivity {
 
         String information = loadJSONFromAsset(info);
         String content = loadJSONFromAsset(sample);
-
-        PersistenceManager.updateTables(this, information);
     }
 
 

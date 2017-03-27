@@ -7,26 +7,20 @@ import android.content.Context;
  */
 
 public class PersistenceManager {
-    private static volatile JsonPersistent jsonPersistent;
+    private static volatile Persistent persistent;
     private static final Object logicalLock = new Object();
 
-    private static JsonPersistent getPersistenceManager(Context context) {
-        JsonPersistent persistent = jsonPersistent;
+    private static Persistent getPersistenceManager(Context context, DataObjectConverter converter) {
+        Persistent persistent = PersistenceManager.persistent;
         if (persistent == null) {
             synchronized (logicalLock) {//while waiting for lock, other thread might have init the object
-                persistent = jsonPersistent;
+                persistent = PersistenceManager.persistent;
                 if ( persistent == null ) {//check again
-                    persistent = new JsonPersistent(context);
-                    jsonPersistent = persistent;
+                    persistent = new Persistent(context, converter);
+                    PersistenceManager.persistent = persistent;
                 }
             }
         }
         return persistent;
-    }
-
-    public static boolean updateTables(Context context, String json) {
-        JsonPersistent persistent = getPersistenceManager(context);
-        persistent.updateTable(json);
-        return false;
     }
 }
