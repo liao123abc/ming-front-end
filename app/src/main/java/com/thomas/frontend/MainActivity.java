@@ -12,10 +12,26 @@ import com.example.queuelibrary.QueueObjectConverter;
 import com.example.queuelibrary.SQLiteBusSubscriber;
 import com.example.queuelibrary.SQLitePersistentQueue;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
+import com.google.gson.internal.LinkedHashTreeMap;
+import com.google.gson.internal.LinkedTreeMap;
+import com.thomas.frontend.model.data.TableData;
+import com.thomas.frontend.model.info.ObjectList;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Type;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
     private final static String TAG = MainActivity.class.getSimpleName();
@@ -69,16 +85,15 @@ public class MainActivity extends AppCompatActivity {
         Payload payload = new Payload("1", "2", "3");
         queue.add(payload);
 
-
-
-
         String info = "info.json";
         String sample = "sample.json";
 
         String information = loadJSONFromAsset(info);
         String content = loadJSONFromAsset(sample);
-    }
 
+        PersistentSample persistentSample = new PersistentSample();
+        persistentSample.test(this, information, content);
+    }
 
     public class GsonPayloadConverter implements QueueObjectConverter<Payload> {
         private final Gson gson;

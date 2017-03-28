@@ -10,6 +10,7 @@ import com.example.jsonpersistent.model.DataObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by thomasliao on 2017/3/23.
@@ -32,11 +33,15 @@ public class Persistent<T>{
 
     public boolean add(T data) {
 
-        DataObject dataObject = converter.serialize(data);
-        String tableName = dataObject.getTableName();
-        ArrayList<HashMap<String, String>> records = dataObject.getRecords();
-
-        return sqliteTableManager.insertList2Table(tableName, records);
+        List<DataObject> list = converter.serialize(data);
+        for (DataObject dataObject : list) {
+            String tableName = dataObject.getTableName();
+            ArrayList<HashMap<String, String>> records = dataObject.getRecords();
+            if (!sqliteTableManager.insertList2Table(tableName, records)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
