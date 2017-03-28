@@ -23,4 +23,12 @@ public class ObjectInfo {
                 ", modelName='" + modelName + '\'' +
                 '}';
     }
+
+    public String getModelCode() {
+        return modelCode;
+    }
+
+    public String getModelName() {
+        return modelName;
+    }
 }

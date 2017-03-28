@@ -19,4 +19,16 @@ public class ObjectList {
                 "objectInfos = " + objectInfos +
                 '}';
     }
+
+    public String getObjectName(String code) {
+        if (code == null || objectInfos == null) {
+            return null;
+        }
+        for (ObjectInfo objectInfo : objectInfos) {
+            if (objectInfo.getModelCode().equals(code)) {
+                return objectInfo.getModelName();
+            }
+        }
+        return null;
+    }
 }

@@ -5,7 +5,35 @@
         "offlinemodelcode": "001", //对象名
         "columns":[
           {
-            "name": "", // 字段名
+            "name": "a", // 字段名
+            "type": "string", // 字段类型
+            "length": "", // 字段长度
+            "pk": "",   // 主键
+            "notNull": "" // 必填
+          },
+          {
+            "name": "b", // 字段名
+            "type": "string", // 字段类型
+            "length": "", // 字段长度
+            "pk": "",   // 主键
+            "notNull": "" // 必填
+          },
+          {
+            "name": "c", // 字段名
+            "type": "", // 字段类型
+            "length": "", // 字段长度
+            "pk": "",   // 主键
+            "notNull": "" // 必填
+          },
+          {
+            "name": "d", // 字段名
+            "type": "", // 字段类型
+            "length": "", // 字段长度
+            "pk": "",   // 主键
+            "notNull": "" // 必填
+          },
+          {
+            "name": "e", // 字段名
             "type": "", // 字段类型
             "length": "", // 字段长度
             "pk": "",   // 主键
@@ -15,60 +43,255 @@
       },
       "records":[
         {
-          "name": "1",
-          "type": "online",
-          "length": "10",
-          "pk": "111",
-          "notNull": "嘿嘿"
+          "a": "1"
         },
         {
-          "name": "2",
-          "type": "online",
-          "length": "10",
-          "pk": "111",
-          "notNull": "haha"
+          "b": "2"
         },
         {
-          "name": "3",
-          "type": "online",
-          "length": "10",
-          "pk": "111",
-          "notNull": "hehe"
+          "c": "3"
         },
         {
-          "name": "4",
-          "type": "online",
-          "length": "10",
-          "pk": "111",
-          "notNull": "daji"
+          "d": "4"
         },
         {
-          "name": "5",
-          "type": "online",
-          "length": "10",
-          "pk": "111",
-          "notNull": "adsfasd"
+          "e": "5"
+        }
+      ]
+    },
+    {
+      "metadata":{
+        "offlinemodelcode": "002", //对象名
+        "columns":[
+          {
+            "name": "a", // 字段名
+            "type": "string", // 字段类型
+            "length": "", // 字段长度
+            "pk": "",   // 主键
+            "notNull": "" // 必填
+          },
+          {
+            "name": "b", // 字段名
+            "type": "string", // 字段类型
+            "length": "", // 字段长度
+            "pk": "",   // 主键
+            "notNull": "" // 必填
+          },
+          {
+            "name": "c", // 字段名
+            "type": "", // 字段类型
+            "length": "", // 字段长度
+            "pk": "",   // 主键
+            "notNull": "" // 必填
+          },
+          {
+            "name": "d", // 字段名
+            "type": "", // 字段类型
+            "length": "", // 字段长度
+            "pk": "",   // 主键
+            "notNull": "" // 必填
+          },
+          {
+            "name": "e", // 字段名
+            "type": "", // 字段类型
+            "length": "", // 字段长度
+            "pk": "",   // 主键
+            "notNull": "" // 必填
+          }
+        ]
+      },
+      "records":[
+        {
+          "a": "1"
         },
         {
-          "name": "6",
-          "type": "online",
-          "length": "10",
-          "pk": "111",
-          "notNull": "嘿ddd嘿"
+          "b": "2"
         },
         {
-          "name": "7",
-          "type": "online",
-          "length": "10",
-          "pk": "111",
-          "notNull": "嘿ff嘿"
+          "c": "3"
         },
         {
-          "name": "8",
-          "type": "online",
-          "length": "10",
-          "pk": "111",
-          "notNull": "嘿嘿aa"
+          "d": "4"
+        },
+        {
+          "e": "5"
+        }
+      ]
+    },
+    {
+      "metadata":{
+        "offlinemodelcode": "003", //对象名
+        "columns":[
+          {
+            "name": "a", // 字段名
+            "type": "string", // 字段类型
+            "length": "", // 字段长度
+            "pk": "",   // 主键
+            "notNull": "" // 必填
+          },
+          {
+            "name": "b", // 字段名
+            "type": "string", // 字段类型
+            "length": "", // 字段长度
+            "pk": "",   // 主键
+            "notNull": "" // 必填
+          },
+          {
+            "name": "c", // 字段名
+            "type": "", // 字段类型
+            "length": "", // 字段长度
+            "pk": "",   // 主键
+            "notNull": "" // 必填
+          },
+          {
+            "name": "d", // 字段名
+            "type": "", // 字段类型
+            "length": "", // 字段长度
+            "pk": "",   // 主键
+            "notNull": "" // 必填
+          },
+          {
+            "name": "e", // 字段名
+            "type": "", // 字段类型
+            "length": "", // 字段长度
+            "pk": "",   // 主键
+            "notNull": "" // 必填
+          }
+        ]
+      },
+      "records":[
+        {
+          "a": "1"
+        },
+        {
+          "b": "2"
+        },
+        {
+          "c": "3"
+        },
+        {
+          "d": "4"
+        },
+        {
+          "e": "5"
+        }
+      ]
+    },
+    {
+      "metadata":{
+        "offlinemodelcode": "004", //对象名
+        "columns":[
+          {
+            "name": "a", // 字段名
+            "type": "string", // 字段类型
+            "length": "", // 字段长度
+            "pk": "",   // 主键
+            "notNull": "" // 必填
+          },
+          {
+            "name": "b", // 字段名
+            "type": "string", // 字段类型
+            "length": "", // 字段长度
+            "pk": "",   // 主键
+            "notNull": "" // 必填
+          },
+          {
+            "name": "c", // 字段名
+            "type": "", // 字段类型
+            "length": "", // 字段长度
+            "pk": "",   // 主键
+            "notNull": "" // 必填
+          },
+          {
+            "name": "d", // 字段名
+            "type": "", // 字段类型
+            "length": "", // 字段长度
+            "pk": "",   // 主键
+            "notNull": "" // 必填
+          },
+          {
+            "name": "e", // 字段名
+            "type": "", // 字段类型
+            "length": "", // 字段长度
+            "pk": "",   // 主键
+            "notNull": "" // 必填
+          }
+        ]
+      },
+      "records":[
+        {
+          "a": "1"
+        },
+        {
+          "b": "2"
+        },
+        {
+          "c": "3"
+        },
+        {
+          "d": "4"
+        },
+        {
+          "e": "5"
+        }
+      ]
+    },
+    {
+      "metadata":{
+        "offlinemodelcode": "005", //对象名
+        "columns":[
+          {
+            "name": "a", // 字段名
+            "type": "string", // 字段类型
+            "length": "", // 字段长度
+            "pk": "",   // 主键
+            "notNull": "" // 必填
+          },
+          {
+            "name": "b", // 字段名
+            "type": "string", // 字段类型
+            "length": "", // 字段长度
+            "pk": "",   // 主键
+            "notNull": "" // 必填
+          },
+          {
+            "name": "c", // 字段名
+            "type": "", // 字段类型
+            "length": "", // 字段长度
+            "pk": "",   // 主键
+            "notNull": "" // 必填
+          },
+          {
+            "name": "d", // 字段名
+            "type": "", // 字段类型
+            "length": "", // 字段长度
+            "pk": "",   // 主键
+            "notNull": "" // 必填
+          },
+          {
+            "name": "e", // 字段名
+            "type": "", // 字段类型
+            "length": "", // 字段长度
+            "pk": "",   // 主键
+            "notNull": "" // 必填
+          }
+        ]
+      },
+      "records":[
+        {
+          "a": "1"
+        },
+        {
+          "b": "2"
+        },
+        {
+          "c": "3"
+        },
+        {
+          "d": "4"
+        },
+        {
+          "e": "5"
         }
       ]
     }

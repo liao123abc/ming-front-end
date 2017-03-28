@@ -35,4 +35,16 @@ public class MetaData {
     private String code;
 
     private ArrayList<Column> columns;
+
+    public String getCode() {
+        return code;
+    }
+
+    public ArrayList<String> getColumnNames(){
+        ArrayList<String> list = new ArrayList<>();
+        for (Column column : columns) {
+            list.add(column.getName());
+        }
+        return list;
+    }
 }

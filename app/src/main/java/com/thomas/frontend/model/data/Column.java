@@ -23,4 +23,8 @@ public class Column {
     private String length;
     private String pk;
     private String notNull;
+
+    public String getName() {
+        return name;
+    }
 }

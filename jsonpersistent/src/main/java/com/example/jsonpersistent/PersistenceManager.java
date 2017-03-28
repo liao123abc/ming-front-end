@@ -10,7 +10,7 @@ public class PersistenceManager {
     private static volatile Persistent persistent;
     private static final Object logicalLock = new Object();
 
-    private static Persistent getPersistenceManager(Context context, DataObjectConverter converter) {
+    public static Persistent getPersistenceManager(Context context, DataObjectConverter converter) {
         Persistent persistent = PersistenceManager.persistent;
         if (persistent == null) {
             synchronized (logicalLock) {//while waiting for lock, other thread might have init the object
