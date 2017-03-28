@@ -15,10 +15,17 @@ public class ConcreteData {
     @SerializedName("metadata")
     private MetaData metaData;
 
-    private ArrayList<HashMap<String, String>> records;
+    /**
+     * 因为不知道record的key，所以用Map来存储
+     */
+    @SerializedName("records")
+    private ArrayList<HashMap<String, String>> record;
 
 
+    public HashMap<String, String> getRecord() {
+        for (HashMap<String, String> map : record) {
 
-
-
+        }
+        return null;
+    }
 }
