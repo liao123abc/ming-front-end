@@ -10,9 +10,11 @@ import com.example.jsonpersistent.Persistent;
 import com.example.jsonpersistent.model.DataObject;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.thomas.frontend.model.data.ConcreteData;
 import com.thomas.frontend.model.data.TableData;
 import com.thomas.frontend.model.info.ObjectList;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -61,8 +63,13 @@ public class PersistentSample {
                     ) {
                 TableData tableData = gson.fromJson(contentJson, TableData.class);
                 ObjectList objectList = gson.fromJson(infoJson, ObjectList.class);//对象列表
+
+                ArrayList<ConcreteData> list = tableData.getConcreteData();
+                for (ConcreteData concreteData : list) {
+                    //ArrayList<>
+                }
             }
-            //// TODO: 2017/3/27  generate list of dataobjcet
+
             return null;
         }
 

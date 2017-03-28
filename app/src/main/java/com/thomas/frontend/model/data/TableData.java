@@ -11,4 +11,8 @@ import java.util.ArrayList;
 public class TableData {
     @SerializedName("resp_data")
     private ArrayList<ConcreteData> concreteData;
+
+    public ArrayList<ConcreteData> getConcreteData() {
+        return concreteData;
+    }
 }
