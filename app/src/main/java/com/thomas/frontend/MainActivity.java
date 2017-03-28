@@ -93,6 +93,10 @@ public class MainActivity extends AppCompatActivity {
 
         PersistentSample persistentSample = new PersistentSample();
         persistentSample.test(this, information, content);
+
+//        String json = "{\"protocols\": {\"header\": \"终端数统计-饼图\",\"footer\": null,\"event\": null,\"tooltip\": null,\"label\": null,\"fieldname\": \"salesareaname\",\"field\": \"storecode\",\"widgettype\": \"pie\"},\"datas\": [{\"salesareaname\": \"华北战区\",\"storecode\": \"2\"},{\"salesareaname\": \"华中战区\",\"storecode\": \"4\"},{\"salesareaname\": \"华南战区\",\"storecode\": \"7\"}]} ";
+//        Object gson = new GsonBuilder().create().fromJson(json, Object.class);
+//        Log.d(TAG, gson.toString());
     }
 
     public class GsonPayloadConverter implements QueueObjectConverter<Payload> {
