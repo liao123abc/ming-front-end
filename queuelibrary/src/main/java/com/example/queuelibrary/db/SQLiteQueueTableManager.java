@@ -19,6 +19,7 @@ public class SQLiteQueueTableManager implements Closeable {
 
     public SQLiteQueueTableManager(SQLiteQueueDbHelper queueDbHelper) {
         this.mDb = queueDbHelper.getWritableDatabase();
+        Log.d("queuedb", mDb.toString());
     }
 
     public long insert(String value) {

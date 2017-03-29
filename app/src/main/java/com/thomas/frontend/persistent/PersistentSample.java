@@ -1,4 +1,4 @@
-package com.thomas.frontend;
+package com.thomas.frontend.persistent;
 
 import android.content.Context;
 

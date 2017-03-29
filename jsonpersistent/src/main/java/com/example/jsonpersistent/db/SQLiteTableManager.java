@@ -34,6 +34,7 @@ public class SQLiteTableManager implements Closeable{
     public SQLiteTableManager(SQLiteDbHelper dbHelper) {
         this.sqLiteOpenHelper = dbHelper;
         this.db = dbHelper.getWritableDatabase();
+        Log.d(TAG, db.toString());
         currentTables = getTableNames();
     }
 

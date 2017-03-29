@@ -12,6 +12,7 @@ import com.example.queuelibrary.SQLiteBusSubscriber;
 import com.example.queuelibrary.SQLitePersistentQueue;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.thomas.frontend.persistent.PersistentSample;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,6 +20,8 @@ import java.io.InputStream;
 public class MainActivity extends AppCompatActivity {
     private final static String TAG = MainActivity.class.getSimpleName();
     private Button button;
+
+    private SQLitePersistentQueue queue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +34,6 @@ public class MainActivity extends AppCompatActivity {
 
         button = (Button) findViewById(R.id.button);
 
-        Gson gson = new Gson();
-        final SQLitePersistentQueue queue = new SQLitePersistentQueue<>(this, new GsonPayloadConverter(gson));
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,52 +68,21 @@ public class MainActivity extends AppCompatActivity {
 
         Payload payload = new Payload("1", "2", "3");
         queue.add(payload);
+        try {
+            queue.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
+    public void testPersistentOffline() {
         String info = "info.json";
         String sample = "sample.json";
 
         String information = loadJSONFromAsset(info);
         String content = loadJSONFromAsset(sample);
-
         PersistentSample persistentSample = new PersistentSample();
         persistentSample.test(this, information, content);
-    }
-
-    public class GsonPayloadConverter implements QueueObjectConverter<Payload> {
-        private final Gson gson;
-
-        public GsonPayloadConverter(Gson gson) {
-            this.gson = gson;
-        }
-
-        @Override
-        public Payload deserialize(String value) {
-            Log.d(TAG, "converter deserialize " + value);
-            return gson.fromJson(value, Payload.class);
-        }
-
-        @Override
-        public String serialize(Payload queueObject) {
-            Log.d(TAG, "serialize " + queueObject.toString());
-            return gson.toJson(queueObject);
-        }
-    }
-
-    public class Subscribe implements SQLiteBusSubscriber<Payload> {
-        @Override
-        public void onAdded(Payload object) {
-
-        }
-
-        @Override
-        public void onRemoved(Payload object) {
-
-        }
-
-        @Override
-        public void onCleared() {
-
-        }
     }
 
     /**

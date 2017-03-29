@@ -3,6 +3,7 @@ package com.example.jsonpersistent.db;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.List;
 
@@ -16,6 +17,7 @@ import java.util.List;
 
 public class SQLiteDbHelper extends SQLiteOpenHelper {
 
+    private static final String TAG = SQLiteDbHelper.class.getSimpleName();
     private static final String DATABASE_NAME = "Persistent.db";
     private static final int DATABASE_VERSION = 1;
 
@@ -25,6 +27,7 @@ public class SQLiteDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        Log.d(TAG, "oncreate");
         //we are not creating any tables when create
     }
 
