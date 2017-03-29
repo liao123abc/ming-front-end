@@ -24,7 +24,7 @@ import java.util.Map;
 
 public class SQLiteTableManager implements Closeable{
     private static final String TAG = SQLiteTableManager.class.getSimpleName();
-    private final SQLiteDatabase db;
+    private SQLiteDatabase db;
     private static final String TEXT_TYPE = " VARCHAR";
     private static final String COMMA_SEP = ",";
     private List<String> currentTables;
@@ -83,7 +83,7 @@ public class SQLiteTableManager implements Closeable{
         return tables;
     }
 
-    private boolean containTable(String tableName) {
+    public boolean containTable(String tableName) {
         for (String string : currentTables) {
             if (string.equals(tableName)) {
                 return true;

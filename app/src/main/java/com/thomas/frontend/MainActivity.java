@@ -7,31 +7,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.jsonpersistent.PersistenceManager;
 import com.example.queuelibrary.QueueObjectConverter;
 import com.example.queuelibrary.SQLiteBusSubscriber;
 import com.example.queuelibrary.SQLitePersistentQueue;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonPrimitive;
-import com.google.gson.internal.LinkedHashTreeMap;
-import com.google.gson.internal.LinkedTreeMap;
-import com.thomas.frontend.model.data.TableData;
-import com.thomas.frontend.model.info.ObjectList;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Type;
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
     private final static String TAG = MainActivity.class.getSimpleName();
