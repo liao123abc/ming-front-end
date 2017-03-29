@@ -26,15 +26,13 @@ public class Persistent<T> implements Closeable{
     private static final String TAG = Persistent.class.getSimpleName();
 
     private SQLiteTableManager sqliteTableManager;
-    private SQLiteDbHelper sqLiteDbHelper;
     private Context context;
     private DataObjectConverter converter;
 
     public Persistent(Context context, DataObjectConverter dataObjectConverter) {
         this.context = context;
         this.converter = dataObjectConverter;
-        this.sqLiteDbHelper = new SQLiteDbHelper(context);
-        sqliteTableManager = new SQLiteTableManager(sqLiteDbHelper);
+        sqliteTableManager = new SQLiteTableManager(new SQLiteDbHelper(context));
     }
 
     public boolean add(T data) {
@@ -60,5 +58,12 @@ public class Persistent<T> implements Closeable{
     @Override
     public void close() throws IOException {
         sqliteTableManager.close();
+    }
+
+    /**
+     * 只内部使用
+     */
+    protected void open() {
+        sqliteTableManager.open();
     }
 }

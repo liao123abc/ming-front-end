@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import java.io.Closeable;
@@ -24,12 +25,14 @@ import java.util.Map;
 
 public class SQLiteTableManager implements Closeable{
     private static final String TAG = SQLiteTableManager.class.getSimpleName();
+    private SQLiteOpenHelper sqLiteOpenHelper;
     private SQLiteDatabase db;
     private static final String TEXT_TYPE = " VARCHAR";
     private static final String COMMA_SEP = ",";
     private List<String> currentTables;
 
     public SQLiteTableManager(SQLiteDbHelper dbHelper) {
+        this.sqLiteOpenHelper = dbHelper;
         this.db = dbHelper.getWritableDatabase();
         currentTables = getTableNames();
     }
@@ -153,6 +156,12 @@ public class SQLiteTableManager implements Closeable{
     public void close() throws IOException {
         if (db != null) {
             db.close();
+        }
+    }
+
+    public void open() {
+        if (!db.isOpen()) {
+            db = this.sqLiteOpenHelper.getWritableDatabase();
         }
     }
 }

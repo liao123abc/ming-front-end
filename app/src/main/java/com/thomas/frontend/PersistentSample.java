@@ -3,7 +3,7 @@ package com.thomas.frontend;
 import android.content.Context;
 
 import com.example.jsonpersistent.DataObjectConverter;
-import com.example.jsonpersistent.PersistenceActor;
+import com.example.jsonpersistent.PersistenceManager;
 import com.example.jsonpersistent.Persistent;
 import com.example.jsonpersistent.model.DataObject;
 import com.google.gson.Gson;
@@ -32,15 +32,13 @@ public class PersistentSample {
         Gson o = builder.create();
 
         MyDataObjectConverter converter = new MyDataObjectConverter(o);
-        Persistent persistent = PersistenceActor.openPersistent(context, converter);
+        Persistent persistent = PersistenceManager.openPersistent(context, converter);
         persistent.add(hashMap);
         try {
             persistent.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 
 
