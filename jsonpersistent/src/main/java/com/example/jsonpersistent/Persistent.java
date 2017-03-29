@@ -5,9 +5,12 @@ import android.content.res.Resources;
 import android.database.SQLException;
 import android.util.Log;
 
+import com.example.jsonpersistent.db.SQLiteDbHelper;
 import com.example.jsonpersistent.db.SQLiteTableManager;
 import com.example.jsonpersistent.model.DataObject;
 
+import java.io.Closeable;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,17 +21,20 @@ import java.util.List;
  * 将json保存到sqlite中
  *
  */
-public class Persistent<T>{
+public class Persistent<T> implements Closeable{
 
     private static final String TAG = Persistent.class.getSimpleName();
 
     private SQLiteTableManager sqliteTableManager;
+    private SQLiteDbHelper sqLiteDbHelper;
     private Context context;
     private DataObjectConverter converter;
 
     public Persistent(Context context, DataObjectConverter dataObjectConverter) {
         this.context = context;
         this.converter = dataObjectConverter;
+        this.sqLiteDbHelper = new SQLiteDbHelper(context);
+        sqliteTableManager = new SQLiteTableManager(sqLiteDbHelper);
     }
 
     public boolean add(T data) {
@@ -36,7 +42,14 @@ public class Persistent<T>{
         List<DataObject> list = converter.serialize(data);
         for (DataObject dataObject : list) {
             String tableName = dataObject.getTableName();
+
+            //检查是否存在这个表，没有的话要先创建这个表
+            if (!sqliteTableManager.containTable(tableName)) {
+                sqliteTableManager.createTable(tableName, dataObject.getProperties());
+            }
+            //把数据插进去表里面
             ArrayList<HashMap<String, String>> records = dataObject.getRecords();
+            Log.d(TAG, tableName.toString() + " " + records.toString());
             if (!sqliteTableManager.insertList2Table(tableName, records)) {
                 return false;
             }
@@ -44,24 +57,8 @@ public class Persistent<T>{
         return true;
     }
 
-    /**
-     * update table according to the json
-     * @param json
-     * @return
-     */
-    public boolean updateTable(String json) {
-
-        return false;
+    @Override
+    public void close() throws IOException {
+        sqliteTableManager.close();
     }
-
-    /**
-     * parse JsonObject to Flat data , and save to db by property
-     * @param json
-     * @return
-     */
-    public boolean persistent(String json) {
-
-        return false;
-    }
-
 }

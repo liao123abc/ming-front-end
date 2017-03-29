@@ -6,6 +6,11 @@ import java.util.ArrayList;
 
 /**
  * Created by thomasliao on 2017/3/25.
+ *
+ * 参考offline.md 一个tabledata对应于多个表和数据
+ *
+ * 一个concreteData对应一张表的数据
+ *
  */
 
 public class TableData {
