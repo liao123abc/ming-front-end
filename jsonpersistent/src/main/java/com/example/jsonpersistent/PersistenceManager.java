@@ -10,20 +10,22 @@ import android.content.Context;
  *
  */
 
-public class PersistenceActor {
+public class PersistenceManager {
     private static volatile Persistent persistent;
     private static final Object logicalLock = new Object();
 
     public static Persistent openPersistent(Context context, DataObjectConverter converter) {
-        Persistent persistent = PersistenceActor.persistent;
+        Persistent persistent = PersistenceManager.persistent;
         if (persistent == null) {
             synchronized (logicalLock) {//while waiting for lock, other thread might have init the object
-                persistent = PersistenceActor.persistent;
+                persistent = PersistenceManager.persistent;
                 if ( persistent == null ) {//check again
                     persistent = new Persistent(context, converter);//create and open db
-                    PersistenceActor.persistent = persistent;
+                    PersistenceManager.persistent = persistent;
                 }
             }
+        } else {
+            persistent.open();//open the db
         }
         return persistent;
     }
