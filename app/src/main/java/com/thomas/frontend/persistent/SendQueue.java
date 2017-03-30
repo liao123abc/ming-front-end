@@ -11,8 +11,12 @@ import com.thomas.frontend.Payload;
 
 /**
  * Created by thomasliao on 2017/3/29.
+ *
+ * depend on queuelibrary
+ *
+ *
  */
-
+@Deprecated
 public class SendQueue {
 
     private static final String TAG = SendQueue.class.getSimpleName();

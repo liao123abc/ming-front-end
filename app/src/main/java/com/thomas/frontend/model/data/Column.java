@@ -7,22 +7,15 @@ package com.thomas.frontend.model.data;
  * 描述一个字段
  *
  *
- *  "columns":[
  {
- "name": "", // 字段名
- "type": "", // 字段类型
- "length": "", // 字段长度
- "pk": "",   // 主键
- "notNull": "" // 必填
- }
+ "name": "b", // 字段名
+ "typescript": "TEXT" // 字段类型脚本(sqlite语法脚本)
+ },
  */
 
 public class Column {
     private String name;
-    private String type;
-    private String length;
-    private String pk;
-    private String notNull;
+    private String typescript;// 字段类型脚本(sqlite语法脚本)
 
     public String getName() {
         return name;

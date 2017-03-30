@@ -10,7 +10,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class ObjectInfo {
 
-    @SerializedName("offlinemodelcode")
+    @SerializedName("objectcode")
     private String modelCode;
 
     @SerializedName("offlinemodelname")

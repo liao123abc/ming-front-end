@@ -10,11 +10,16 @@ import java.util.HashMap;
 
 public class DataObject {
     private String tableName;
+    private boolean allIn;
     private ArrayList<String> properties;
     private ArrayList<HashMap<String, String>> records;//一个或者多个记录
 
     public String getTableName() {
         return tableName;
+    }
+
+    public boolean isAllIn() {
+        return allIn;
     }
 
     public ArrayList<String> getProperties() {
@@ -25,8 +30,10 @@ public class DataObject {
         return records;
     }
 
-    public DataObject(String tableName, ArrayList<String> properties, ArrayList<HashMap<String, String>> records) {
+    public DataObject(String tableName, boolean allIn, ArrayList<String> properties,
+                      ArrayList<HashMap<String, String>> records) {
         this.tableName = tableName;
+        this.allIn = allIn;
         this.properties = properties;
         this.records = records;
     }

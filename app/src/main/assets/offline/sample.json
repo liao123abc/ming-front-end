@@ -1,273 +1,153 @@
 {
   "resp_data":[
+
+
+
     {
-      "metadata":{
-        "offlinemodelcode": "001", //对象名
-        "columns":[
-          {
-            "name": "a", // 字段名
-            "type": "string", // 字段类型
-            "length": "", // 字段长度
-            "pk": "",   // 主键
-            "notNull": "" // 必填
-          },
-          {
-            "name": "b", // 字段名
-            "type": "string", // 字段类型
-            "length": "", // 字段长度
-            "pk": "",   // 主键
-            "notNull": "" // 必填
-          },
-          {
-            "name": "c", // 字段名
-            "type": "", // 字段类型
-            "length": "", // 字段长度
-            "pk": "",   // 主键
-            "notNull": "" // 必填
-          },
-          {
-            "name": "d", // 字段名
-            "type": "", // 字段类型
-            "length": "", // 字段长度
-            "pk": "",   // 主键
-            "notNull": "" // 必填
-          },
-          {
-            "name": "e", // 字段名
-            "type": "", // 字段类型
-            "length": "", // 字段长度
-            "pk": "",   // 主键
-            "notNull": "" // 必填
-          }
-        ]
-      },
-      "records":[
+      "allin":"0",
+      "objectcode": "001", //离线模型对应的业务对象code
+      "tablename": "pl_salearea", // 表名
+      "columns":[
         {
-          "a": "1",
-          "b": "1",
-          "c": "1",
-          "d": "1",
-          "e": "1"
+          "name": "a", // 字段名
+          "typescript": "VAR" // 字段类型脚本(sqlite语法脚本)
         },
         {
-          "a": "2",
-          "b": "2",
-          "c": "2",
-          "d": "2",
-          "e": "2"
-        }
-      ]
-    },
-    {
-      "metadata":{
-        "offlinemodelcode": "002", //对象名
-        "columns":[
-          {
-            "name": "a", // 字段名
-            "type": "string", // 字段类型
-            "length": "", // 字段长度
-            "pk": "",   // 主键
-            "notNull": "" // 必填
-          },
-          {
-            "name": "b", // 字段名
-            "type": "string", // 字段类型
-            "length": "", // 字段长度
-            "pk": "",   // 主键
-            "notNull": "" // 必填
-          },
-          {
-            "name": "c", // 字段名
-            "type": "", // 字段类型
-            "length": "", // 字段长度
-            "pk": "",   // 主键
-            "notNull": "" // 必填
-          },
-          {
-            "name": "d", // 字段名
-            "type": "", // 字段类型
-            "length": "", // 字段长度
-            "pk": "",   // 主键
-            "notNull": "" // 必填
-          },
-          {
-            "name": "e", // 字段名
-            "type": "", // 字段类型
-            "length": "", // 字段长度
-            "pk": "",   // 主键
-            "notNull": "" // 必填
-          }
-        ]
-      },
-      "records":[
-        {
-          "a": "3",
-          "b": "3",
-          "c": "3",
-          "d": "3",
-          "e": "3"
+          "name": "b", // 字段名
+          "typescript": "TEXT" // 字段类型脚本(sqlite语法脚本)
         },
         {
-          "a": "4",
-          "b": "4",
-          "c": "4",
-          "d": "4",
-          "e": "4"
+          "name": "d", // 字段名
+          "typescript": "" // 字段类型脚本(sqlite语法脚本)
+        },
+        {
+          "name": "c", // 字段名
+          "typescript": "INTEGER" // 字段类型脚本(sqlite语法脚本)
+        }
+      ],
+      "records":[
+        {
+          "a": "11", // 值value
+          "b": "12", // 值value
+          "c": "13", // 值value
+          "d": "14" // 值value
+        },
+        {
+          "a": "11", // 值value
+          "b": "1we", // 值value
+          "c": "qf", // 值value
+          "d": "464656" // 值value
+        },
+        {
+          "a": "11", // 值value
+          "b": "12", // 值value
+          "c": "13sdfa", // 值value
+          "d": "5656565656" // 值value
+        },
+        {
+          "a": "113", // 值value
+          "b": "12f", // 值value
+          "c": "13s", // 值value
+          "d": "14" // 值value
         }
       ]
     },
+
+
     {
-      "metadata":{
-        "offlinemodelcode": "003", //对象名
-        "columns":[
-          {
-            "name": "a", // 字段名
-            "type": "string", // 字段类型
-            "length": "", // 字段长度
-            "pk": "",   // 主键
-            "notNull": "" // 必填
-          },
-          {
-            "name": "b", // 字段名
-            "type": "string", // 字段类型
-            "length": "", // 字段长度
-            "pk": "",   // 主键
-            "notNull": "" // 必填
-          },
-          {
-            "name": "c", // 字段名
-            "type": "", // 字段类型
-            "length": "", // 字段长度
-            "pk": "",   // 主键
-            "notNull": "" // 必填
-          },
-          {
-            "name": "d", // 字段名
-            "type": "", // 字段类型
-            "length": "", // 字段长度
-            "pk": "",   // 主键
-            "notNull": "" // 必填
-          },
-          {
-            "name": "e", // 字段名
-            "type": "", // 字段类型
-            "length": "", // 字段长度
-            "pk": "",   // 主键
-            "notNull": "" // 必填
-          }
-        ]
-      },
+      "allin":"0",
+      "objectcode": "002", //离线模型对应的业务对象code
+      "tablename": "pl_store", // 表名
+      "columns":[
+        {
+          "name": "a", // 字段名
+          "typescript": "VAR" // 字段类型脚本(sqlite语法脚本)
+        },
+        {
+          "name": "b", // 字段名
+          "typescript": "TEXT" // 字段类型脚本(sqlite语法脚本)
+        },
+        {
+          "name": "d", // 字段名
+          "typescript": "" // 字段类型脚本(sqlite语法脚本)
+        },
+        {
+          "name": "c", // 字段名
+          "typescript": "" // 字段类型脚本(sqlite语法脚本)
+        }
+      ],
       "records":[
         {
-          "a": "4",
-          "b": "5",
-          "c": "6",
-          "d": "7",
-          "e": "2"
+          "a": "11", // 值value
+          "b": "12", // 值value
+          "c": "13", // 值value
+          "d": "14" // 值value
+        },
+        {
+          "a": "11", // 值value
+          "b": "1we", // 值value
+          "c": "qf", // 值value
+          "d": "464656" // 值value
+        },
+        {
+          "a": "11", // 值value
+          "b": "12", // 值value
+          "c": "13sdfa", // 值value
+          "d": "5656565656" // 值value
+        },
+        {
+          "a": "113", // 值value
+          "b": "12f", // 值value
+          "c": "13s", // 值value
+          "d": "14" // 值value
         }
       ]
     },
+
+
     {
-      "metadata":{
-        "offlinemodelcode": "004", //对象名
-        "columns":[
-          {
-            "name": "a", // 字段名
-            "type": "string", // 字段类型
-            "length": "", // 字段长度
-            "pk": "",   // 主键
-            "notNull": "" // 必填
-          },
-          {
-            "name": "b", // 字段名
-            "type": "string", // 字段类型
-            "length": "", // 字段长度
-            "pk": "",   // 主键
-            "notNull": "" // 必填
-          },
-          {
-            "name": "c", // 字段名
-            "type": "", // 字段类型
-            "length": "", // 字段长度
-            "pk": "",   // 主键
-            "notNull": "" // 必填
-          },
-          {
-            "name": "d", // 字段名
-            "type": "", // 字段类型
-            "length": "", // 字段长度
-            "pk": "",   // 主键
-            "notNull": "" // 必填
-          },
-          {
-            "name": "e", // 字段名
-            "type": "", // 字段类型
-            "length": "", // 字段长度
-            "pk": "",   // 主键
-            "notNull": "" // 必填
-          }
-        ]
-      },
-      "records":[
+      "allin":"0",
+      "objectcode": "003", //离线模型对应的业务对象code
+      "tablename": "pl_address", // 表名
+      "columns":[
         {
-          "a": "2",
-          "b": "6",
-          "c": "6",
-          "d": "2",
-          "e": "6"
+          "name": "a", // 字段名
+          "typescript": "VAR" // 字段类型脚本(sqlite语法脚本)
+        },
+        {
+          "name": "b", // 字段名
+          "typescript": "TEXT" // 字段类型脚本(sqlite语法脚本)
+        },
+        {
+          "name": "d", // 字段名
+          "typescript": "" // 字段类型脚本(sqlite语法脚本)
+        },
+        {
+          "name": "c", // 字段名
+          "typescript": "" // 字段类型脚本(sqlite语法脚本)
         }
-      ]
-    },
-    {
-      "metadata":{
-        "offlinemodelcode": "005", //对象名
-        "columns":[
-          {
-            "name": "a", // 字段名
-            "type": "string", // 字段类型
-            "length": "", // 字段长度
-            "pk": "",   // 主键
-            "notNull": "" // 必填
-          },
-          {
-            "name": "b", // 字段名
-            "type": "string", // 字段类型
-            "length": "", // 字段长度
-            "pk": "",   // 主键
-            "notNull": "" // 必填
-          },
-          {
-            "name": "c", // 字段名
-            "type": "", // 字段类型
-            "length": "", // 字段长度
-            "pk": "",   // 主键
-            "notNull": "" // 必填
-          },
-          {
-            "name": "d", // 字段名
-            "type": "", // 字段类型
-            "length": "", // 字段长度
-            "pk": "",   // 主键
-            "notNull": "" // 必填
-          },
-          {
-            "name": "e", // 字段名
-            "type": "", // 字段类型
-            "length": "", // 字段长度
-            "pk": "",   // 主键
-            "notNull": "" // 必填
-          }
-        ]
-      },
+      ],
       "records":[
         {
-          "a": "8",
-          "b": "2",
-          "c": "2",
-          "d": "8",
-          "e": "2"
+          "a": "11", // 值value
+          "b": "12", // 值value
+          "c": "13", // 值value
+          "d": "14" // 值value
+        },
+        {
+          "a": "11", // 值value
+          "b": "1we", // 值value
+          "c": "qf", // 值value
+          "d": "464656" // 值value
+        },
+        {
+          "a": "113", // 值value
+          "b": "12f", // 值value
+          "c": "13s", // 值value
+          "d": "14" // 值value
         }
       ]
     }
+
   ]
 }

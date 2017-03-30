@@ -92,11 +92,13 @@ public class PersistentSample {
             //table name
             String code = concreteData.getObjectCode();
             String tableName = objectList.getObjectName(code);
+            //is all in
+            boolean allIn = concreteData.isAllIn();
             //all columns' name
             ArrayList<String> properties = concreteData.getAllColumnsName();
             //records
             ArrayList<HashMap<String, String>> records = concreteData.getRecords();
-            DataObject dataObject = new DataObject(tableName, properties, records);
+            DataObject dataObject = new DataObject(tableName, allIn, properties, records);
             return dataObject;
         }
     }

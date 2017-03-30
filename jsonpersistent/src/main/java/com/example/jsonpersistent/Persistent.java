@@ -41,6 +41,9 @@ public class Persistent<T> implements Closeable{
         for (DataObject dataObject : list) {
             String tableName = dataObject.getTableName();
 
+            boolean allIn = dataObject.isAllIn();
+            //// TODO: 2017/3/30 if all in , first of all delete all the data
+
             //检查是否存在这个表，没有的话要先创建这个表
             if (!sqliteTableManager.containTable(tableName)) {
                 sqliteTableManager.createTable(tableName, dataObject.getProperties());

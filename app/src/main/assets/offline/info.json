@@ -1,24 +1,16 @@
 {
     "resp_data":[
         {
-            "offlinemodelcode": "001", // 离线对象code
+            "objectcode": "001", // 离线对象code
             "offlinemodelname": "apple" // 名称
         },
         {
-            "offlinemodelcode": "002", // 离线对象code
+            "objectcode": "002", // 离线对象code
             "offlinemodelname": "lily" // 名称
         },
         {
-            "offlinemodelcode": "003", // 离线对象code
+            "objectcode": "003", // 离线对象code
             "offlinemodelname": "lucy" // 名称
-        },
-        {
-            "offlinemodelcode": "004", // 离线对象code
-            "offlinemodelname": "benny" // 名称
-        },
-        {
-            "offlinemodelcode": "005", // 离线对象code
-            "offlinemodelname": "cosy" // 名称
         }
     ]
 }

@@ -13,6 +13,7 @@ import com.example.queuelibrary.SQLitePersistentQueue;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.thomas.frontend.persistent.PersistentSample;
+import com.thomas.frontend.persistent.SendQueue;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,8 +21,6 @@ import java.io.InputStream;
 public class MainActivity extends AppCompatActivity {
     private final static String TAG = MainActivity.class.getSimpleName();
     private Button button;
-
-    private SQLitePersistentQueue queue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +33,10 @@ public class MainActivity extends AppCompatActivity {
 
         button = (Button) findViewById(R.id.button);
 
-
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addToQueue(queue);
+                addToQueue();
             }
         });
 
@@ -60,7 +58,8 @@ public class MainActivity extends AppCompatActivity {
         return json;
     }
 
-    private void addToQueue(SQLitePersistentQueue queue) {
+    private void addToQueue() {
+        SQLitePersistentQueue queue = new SendQueue().init(this);
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("id", "123");
         jsonObject.addProperty("name", "thomas");
@@ -73,6 +72,8 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        testPersistentOffline();
     }
 
     public void testPersistentOffline() {
