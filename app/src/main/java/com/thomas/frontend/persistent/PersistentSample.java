@@ -23,6 +23,10 @@ import java.util.List;
 
 public class PersistentSample {
     private static final String TAG = PersistentSample.class.getSimpleName();
+    private static final String ADDITIONAL_STATUS = "localstatus";
+    private static final String ADDITIONAL_UPDATETIME = "localupdatetime";
+    private static final String ADDITIONAL_STATUS_TYPE = "INT";
+    private static final String ADDITIONAL_UPDATETIME_TYPE = "localupdatetime";
 
     public void test(Context context, String info, String content) {
         HashMap<String, String> hashMap = new HashMap<>();
@@ -41,7 +45,9 @@ public class PersistentSample {
         }
     }
 
-
+    /**
+     * custom Converter
+     */
     class MyDataObjectConverter implements DataObjectConverter<HashMap<String, String>> {
 
         private final Gson gson;
@@ -92,13 +98,30 @@ public class PersistentSample {
             //table name
             String code = concreteData.getObjectCode();
             String tableName = objectList.getObjectName(code);
-            //is all in
-            boolean allIn = concreteData.isAllIn();
+            //should drop the table and create a new one?
+            boolean rebuild = concreteData.isRebuild();
             //all columns' name
-            ArrayList<String> properties = concreteData.getAllColumnsName();
+            ArrayList<String> allColumnsName = concreteData.getAllColumnsName();
+            ArrayList<String> allColumnsTypeScript = concreteData.getAllColumnsTypeScript();
             //records
             ArrayList<HashMap<String, String>> records = concreteData.getRecords();
-            DataObject dataObject = new DataObject(tableName, allIn, properties, records);
+
+            Long time = concreteData.getTimestamp();
+
+            //pending additional columns localstatus & localupdatetime
+            //1.add columns
+            allColumnsName.add(ADDITIONAL_STATUS);
+            allColumnsName.add(ADDITIONAL_UPDATETIME);
+            //2.add column type script
+            allColumnsTypeScript.add(ADDITIONAL_STATUS_TYPE);//localstatus
+            allColumnsTypeScript.add(ADDITIONAL_UPDATETIME_TYPE);//timestamp
+            //3.fill the records
+            for (HashMap hashMap : records) {
+                hashMap.put(ADDITIONAL_STATUS, "1");
+                hashMap.put(ADDITIONAL_UPDATETIME, time);
+            }
+
+            DataObject dataObject = new DataObject(tableName, rebuild, allColumnsName, allColumnsTypeScript, records);
             return dataObject;
         }
     }

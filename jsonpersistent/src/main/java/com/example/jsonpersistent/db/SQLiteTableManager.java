@@ -27,7 +27,8 @@ public class SQLiteTableManager implements Closeable{
     private static final String TAG = SQLiteTableManager.class.getSimpleName();
     private SQLiteOpenHelper sqLiteOpenHelper;
     private SQLiteDatabase db;
-    private static final String TEXT_TYPE = " VARCHAR";
+    //default type
+    private static final String DEFAULT_COLUMN_TYPE = " VARCHAR";
     private static final String COMMA_SEP = ",";
     private List<String> currentTables;
 
@@ -38,17 +39,23 @@ public class SQLiteTableManager implements Closeable{
         currentTables = getTableNames();
     }
 
-    /**
-     * 创建一个新表
-     * @param tableName
-     * @param properties
-     */
-    public void createTable(String tableName, List<String> properties) {
+    public void createTable(String tableName, List<String> properties, List<String> typeScripts) {
+        if (properties.size() != typeScripts.size()) {
+            Log.e(TAG, "properties size not equal to typeScripts size");
+            return;
+        }
         String sql1 = "CREATE TABLE " + tableName + " (";
         String sql2 = " ";
+
+        for (int i = 0; i < properties.size(); i++) {
+            sql2 += properties.get(i);
+            sql2 += typeScripts.get(i);
+            sql2 +=  COMMA_SEP;
+        }
+
         for (String property : properties) {
-            sql2 += property;
-            sql2 += TEXT_TYPE;
+            sql2 += property + " ";
+            sql2 += DEFAULT_COLUMN_TYPE;
             sql2 +=  COMMA_SEP;
         }
         sql2 = sql2.substring(0, sql2.length() - 1); // 去掉最后的","

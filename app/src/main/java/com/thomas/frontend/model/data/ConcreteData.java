@@ -23,13 +23,12 @@ import java.util.Map;
 
 public class ConcreteData {
 
-    private String allin; // 1 删本地表再新建，全量处理   0 按照正常增量逻辑处理
-
+    private String rebuild; // 1 删本地表再新建，全量处理   0 按照正常增量逻辑处理
     @SerializedName("objectcode")
     private String code;
     @SerializedName("tablename")
     private String tableName;
-
+    private Long timestamp;//时间戳
     private ArrayList<Column> columns;
 
     /**
@@ -38,10 +37,30 @@ public class ConcreteData {
     @SerializedName("records")
     private ArrayList<HashMap<String, String>> records;
 
+    /**
+     * 返回字段的名称
+     * @return
+     */
     public ArrayList<String> getAllColumnsName(){
         ArrayList<String> list = new ArrayList<>();
         for (Column column : columns) {
             list.add(column.getName());
+        }
+        return list;
+    }
+
+    public Long getTimestamp() {
+        return timestamp;
+    }
+
+    /**
+     * 返回字段的类型， 譬如 ： Int primary not null
+     * @return
+     */
+    public ArrayList<String> getAllColumnsTypeScript() {
+        ArrayList<String> list = new ArrayList<>();
+        for (Column column : columns) {
+            list.add(column.getTypescript());
         }
         return list;
     }
@@ -58,8 +77,8 @@ public class ConcreteData {
         return records;
     }
 
-    public boolean isAllIn() {
-        return allin.equals("1");
+    public boolean isRebuild() {
+        return rebuild.equals("1");
     }
 
     /**

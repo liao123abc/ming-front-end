@@ -1,8 +1,6 @@
 package com.example.jsonpersistent;
 
 import android.content.Context;
-import android.content.res.Resources;
-import android.database.SQLException;
 import android.util.Log;
 
 import com.example.jsonpersistent.db.SQLiteDbHelper;
@@ -41,19 +39,19 @@ public class Persistent<T> implements Closeable{
         for (DataObject dataObject : list) {
             String tableName = dataObject.getTableName();
 
-            boolean allIn = dataObject.isAllIn();
-            //// TODO: 2017/3/30 if all in , first of all delete all the data
+            boolean rebuild = dataObject.isRebuild();
 
-            //检查是否存在这个表，没有的话要先创建这个表
-            if (!sqliteTableManager.containTable(tableName)) {
-                sqliteTableManager.createTable(tableName, dataObject.getProperties());
+            /**
+             *
+             */
+            if (rebuild) {
+                reCreateTable(tableName);
             }
-            //把数据插进去表里面
-            ArrayList<HashMap<String, String>> records = dataObject.getRecords();
-            Log.d(TAG, tableName.toString() + " " + records.toString());
-            if (!sqliteTableManager.insertList2Table(tableName, records)) {
+
+            if (!persistent(dataObject)) {
                 return false;
             }
+
         }
         return true;
     }
@@ -68,5 +66,36 @@ public class Persistent<T> implements Closeable{
      */
     protected void open() {
         sqliteTableManager.open();
+    }
+
+    /**
+     * 先删除表，再重新建表
+     */
+    private void reCreateTable(String tableName) {
+
+    }
+
+    /**
+     *  持久化数据
+     *  如果没有表，那么先要建表
+     *  如果已经有表，直接插入
+     * @param dataObject
+     * @return
+     */
+    private boolean persistent(DataObject dataObject) {
+        String tableName = dataObject.getTableName();
+        //检查是否存在这个表，没有的话要先创建这个表
+        if (!sqliteTableManager.containTable(tableName)) {
+            List columns = dataObject.getColumns();
+            List columnsTypeScript = dataObject.getColumnTypeScript();
+            sqliteTableManager.createTable(tableName, columns, columnsTypeScript);
+        }
+        //把数据插进去表里面
+        ArrayList<HashMap<String, String>> records = dataObject.getRecords();
+        Log.d(TAG, tableName.toString() + " " + records.toString());
+        if (!sqliteTableManager.insertList2Table(tableName, records)) {
+            return false;
+        }
+        return true;
     }
 }

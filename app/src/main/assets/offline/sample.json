@@ -4,7 +4,8 @@
 
 
     {
-      "allin":"0",
+      "rebuild":"0",
+      "timestamp":"8",
       "objectcode": "001", //离线模型对应的业务对象code
       "tablename": "pl_salearea", // 表名
       "columns":[
@@ -55,7 +56,8 @@
 
 
     {
-      "allin":"0",
+      "rebuild":"0",
+      "timestamp":"9",
       "objectcode": "002", //离线模型对应的业务对象code
       "tablename": "pl_store", // 表名
       "columns":[
@@ -106,7 +108,8 @@
 
 
     {
-      "allin":"0",
+      "rebuild":"0",
+      "timestamp":"10",
       "objectcode": "003", //离线模型对应的业务对象code
       "tablename": "pl_address", // 表名
       "columns":[

@@ -20,4 +20,8 @@ public class Column {
     public String getName() {
         return name;
     }
+
+    public String getTypescript() {
+        return typescript;
+    }
 }

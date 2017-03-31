@@ -10,31 +10,48 @@ import java.util.HashMap;
 
 public class DataObject {
     private String tableName;
-    private boolean allIn;
-    private ArrayList<String> properties;
+    private boolean rebuild;
+    private ArrayList<String> columns;
+    private ArrayList<String> columnTypeScript;
     private ArrayList<HashMap<String, String>> records;//一个或者多个记录
 
     public String getTableName() {
         return tableName;
     }
 
-    public boolean isAllIn() {
-        return allIn;
-    }
-
-    public ArrayList<String> getProperties() {
-        return properties;
+    public ArrayList<String> getColumns() {
+        return columns;
     }
 
     public ArrayList<HashMap<String, String>> getRecords() {
         return records;
     }
 
-    public DataObject(String tableName, boolean allIn, ArrayList<String> properties,
+    public ArrayList<String> getColumnTypeScript() {
+        return columnTypeScript;
+    }
+
+    public boolean isRebuild() {
+        return rebuild;
+    }
+
+    /**
+     *
+     * @param tableName  表名
+     * @param rebuild    是否需要删除该表，然后重新创建一个新表
+     * @param columns    列的名字
+     * @param columnTypeScript  列的类型
+     * @param records    数据记录
+     */
+    public DataObject(String tableName,
+                      boolean rebuild,
+                      ArrayList<String> columns,
+                      ArrayList<String> columnTypeScript,
                       ArrayList<HashMap<String, String>> records) {
         this.tableName = tableName;
-        this.allIn = allIn;
-        this.properties = properties;
+        this.rebuild = rebuild;
+        this.columnTypeScript = columnTypeScript;
+        this.columns = columns;
         this.records = records;
     }
 }
