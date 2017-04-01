@@ -53,6 +53,10 @@ public class ConcreteData {
         return timestamp;
     }
 
+    public String getTableName() {
+        return tableName;
+    }
+
     /**
      * 返回字段的类型， 譬如 ： Int primary not null
      * @return

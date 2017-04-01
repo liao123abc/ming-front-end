@@ -26,7 +26,7 @@ public class PersistentSample {
     private static final String ADDITIONAL_STATUS = "localstatus";
     private static final String ADDITIONAL_UPDATETIME = "localupdatetime";
     private static final String ADDITIONAL_STATUS_TYPE = "INT";
-    private static final String ADDITIONAL_UPDATETIME_TYPE = "localupdatetime";
+    private static final String ADDITIONAL_UPDATETIME_TYPE = "LONG";
 
     public void test(Context context, String info, String content) {
         HashMap<String, String> hashMap = new HashMap<>();
@@ -97,7 +97,8 @@ public class PersistentSample {
         private DataObject constructDataObject(ConcreteData concreteData, ObjectList objectList) {
             //table name
             String code = concreteData.getObjectCode();
-            String tableName = objectList.getObjectName(code);
+            String tableName = concreteData.getTableName();
+            String description = objectList.getObjectName(code);
             //should drop the table and create a new one?
             boolean rebuild = concreteData.isRebuild();
             //all columns' name
@@ -118,10 +119,12 @@ public class PersistentSample {
             //3.fill the records
             for (HashMap hashMap : records) {
                 hashMap.put(ADDITIONAL_STATUS, "1");
-                hashMap.put(ADDITIONAL_UPDATETIME, time);
+                //// TODO: 2017/4/1 type
+                hashMap.put(ADDITIONAL_UPDATETIME, time +"");
             }
 
-            DataObject dataObject = new DataObject(tableName, rebuild, allColumnsName, allColumnsTypeScript, records);
+            DataObject dataObject = new DataObject(tableName, description, rebuild, allColumnsName,
+                    allColumnsTypeScript, records);
             return dataObject;
         }
     }

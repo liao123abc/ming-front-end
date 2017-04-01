@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.example.jsonpersistent.db.contract.DynamicTable;
+
 import java.io.Closeable;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -27,9 +29,6 @@ public class SQLiteTableManager implements Closeable{
     private static final String TAG = SQLiteTableManager.class.getSimpleName();
     private SQLiteOpenHelper sqLiteOpenHelper;
     private SQLiteDatabase db;
-    //default type
-    private static final String DEFAULT_COLUMN_TYPE = " VARCHAR";
-    private static final String COMMA_SEP = ",";
     private List<String> currentTables;
 
     public SQLiteTableManager(SQLiteDbHelper dbHelper) {
@@ -39,34 +38,15 @@ public class SQLiteTableManager implements Closeable{
         currentTables = getTableNames();
     }
 
-    public void createTable(String tableName, List<String> properties, List<String> typeScripts) {
-        if (properties.size() != typeScripts.size()) {
-            Log.e(TAG, "properties size not equal to typeScripts size");
-            return;
+    public DynamicTable createTable(String tableName, List<String> properties, List<String> typeScripts) {
+        DynamicTable table = new DynamicTable(tableName, properties, typeScripts);
+        String sql = table.getCreateSQL();
+        if (sql != null) {
+            db.execSQL(sql);
+            currentTables.add(tableName);
+            return table;
         }
-        String sql1 = "CREATE TABLE " + tableName + " (";
-        String sql2 = " ";
-
-        for (int i = 0; i < properties.size(); i++) {
-            sql2 += properties.get(i);
-            sql2 += typeScripts.get(i);
-            sql2 +=  COMMA_SEP;
-        }
-
-        for (String property : properties) {
-            sql2 += property + " ";
-            sql2 += DEFAULT_COLUMN_TYPE;
-            sql2 +=  COMMA_SEP;
-        }
-        sql2 = sql2.substring(0, sql2.length() - 1); // 去掉最后的","
-        String sql3 = " )";
-        String sql = sql1 + sql2 + sql3;
-        db.execSQL(sql);
-        currentTables.add(tableName);
-    }
-
-    public void clearDB() {
-
+        return null;
     }
 
     public void dropTable(String tableName) {
@@ -146,18 +126,6 @@ public class SQLiteTableManager implements Closeable{
         Cursor dbCursor = db.query(tableName, null, null, null, null, null, null);
         String[] columnNames = dbCursor.getColumnNames();
         return columnNames;
-    }
-
-    public void updateTables(List<String> tables) {
-
-    }
-
-    public void addNewTable() {
-
-    }
-
-    public void addData() {
-
     }
 
     @Override

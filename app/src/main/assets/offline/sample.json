@@ -19,7 +19,7 @@
         },
         {
           "name": "d", // 字段名
-          "typescript": "" // 字段类型脚本(sqlite语法脚本)
+          "typescript": "VAR" // 字段类型脚本(sqlite语法脚本)
         },
         {
           "name": "c", // 字段名
@@ -71,11 +71,11 @@
         },
         {
           "name": "d", // 字段名
-          "typescript": "" // 字段类型脚本(sqlite语法脚本)
+          "typescript": "VAR" // 字段类型脚本(sqlite语法脚本)
         },
         {
           "name": "c", // 字段名
-          "typescript": "" // 字段类型脚本(sqlite语法脚本)
+          "typescript": "VAR" // 字段类型脚本(sqlite语法脚本)
         }
       ],
       "records":[
@@ -123,11 +123,11 @@
         },
         {
           "name": "d", // 字段名
-          "typescript": "" // 字段类型脚本(sqlite语法脚本)
+          "typescript": "VAR" // 字段类型脚本(sqlite语法脚本)
         },
         {
           "name": "c", // 字段名
-          "typescript": "" // 字段类型脚本(sqlite语法脚本)
+          "typescript": "VAR" // 字段类型脚本(sqlite语法脚本)
         }
       ],
       "records":[

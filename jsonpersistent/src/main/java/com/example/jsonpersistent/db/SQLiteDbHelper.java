@@ -5,12 +5,14 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.example.jsonpersistent.db.contract.InfoTable;
+
 import java.util.List;
 
 /**
  * Created by thomasliao on 2017/3/23.
  *
- * table 不要指定主键，sqlite会自己管理好
+ * 初始化的时候创建一个Info表
  *
  *
  */
@@ -25,14 +27,20 @@ public class SQLiteDbHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void onCreate(SQLiteDatabase db) {
-        Log.d(TAG, "oncreate");
-        //we are not creating any tables when create
+        db.execSQL(InfoTable.SQL_CREATE);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        //we will not upgrade the database
+        db.execSQL(InfoTable.SQL_DELETE);
+        onCreate(db);
     }
 }

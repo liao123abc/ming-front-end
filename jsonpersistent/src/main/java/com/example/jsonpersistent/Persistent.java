@@ -42,12 +42,13 @@ public class Persistent<T> implements Closeable{
             boolean rebuild = dataObject.isRebuild();
 
             /**
-             *
+             * 如果需要rebuild， 那么要先删除表，然后再重新建表
              */
             if (rebuild) {
-                reCreateTable(tableName);
+                deleteTable(tableName);
             }
 
+            //会先检查是否有这个表，没有就先建表再插数据
             if (!persistent(dataObject)) {
                 return false;
             }
@@ -69,10 +70,10 @@ public class Persistent<T> implements Closeable{
     }
 
     /**
-     * 先删除表，再重新建表
+     * 删除表
      */
-    private void reCreateTable(String tableName) {
-
+    private void deleteTable(String tableName) {
+        sqliteTableManager.dropTable(tableName);
     }
 
     /**

@@ -10,6 +10,7 @@ import java.util.HashMap;
 
 public class DataObject {
     private String tableName;
+    private String description;//object name
     private boolean rebuild;
     private ArrayList<String> columns;
     private ArrayList<String> columnTypeScript;
@@ -38,17 +39,20 @@ public class DataObject {
     /**
      *
      * @param tableName  表名
+     * @param description 对象名
      * @param rebuild    是否需要删除该表，然后重新创建一个新表
      * @param columns    列的名字
      * @param columnTypeScript  列的类型
      * @param records    数据记录
      */
     public DataObject(String tableName,
+                      String description,
                       boolean rebuild,
                       ArrayList<String> columns,
                       ArrayList<String> columnTypeScript,
                       ArrayList<HashMap<String, String>> records) {
         this.tableName = tableName;
+        this.description = description;
         this.rebuild = rebuild;
         this.columnTypeScript = columnTypeScript;
         this.columns = columns;
