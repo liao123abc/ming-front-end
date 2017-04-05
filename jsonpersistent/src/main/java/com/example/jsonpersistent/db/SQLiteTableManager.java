@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import com.example.jsonpersistent.db.contract.DynamicTable;
+import com.example.jsonpersistent.db.contract.InfoTable;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -38,15 +39,12 @@ public class SQLiteTableManager implements Closeable{
         currentTables = getTableNames();
     }
 
-    public DynamicTable createTable(String tableName, List<String> properties, List<String> typeScripts) {
-        DynamicTable table = new DynamicTable(tableName, properties, typeScripts);
-        String sql = table.getCreateSQL();
+    public void createTable(String tableName, HashMap<String, String> columnsInfo) {
+        String sql = DynamicTable.getCreateSQL(tableName, columnsInfo);
         if (sql != null) {
             db.execSQL(sql);
             currentTables.add(tableName);
-            return table;
         }
-        return null;
     }
 
     public void dropTable(String tableName) {
@@ -72,6 +70,98 @@ public class SQLiteTableManager implements Closeable{
         cursor.close();
         Log.d(TAG, "tables: " + tables.toString());
         return tables;
+    }
+
+    /**
+     * 根据code从信息表中获取hashcode
+     * @param code
+     * @return
+     */
+    public String getHashCodeFromInfoTable(String code) {
+        String[] projection = {InfoTable.HASHCODE};
+        String selection = InfoTable.CODE + " = ?";
+        String[] selectionArgs = {code};
+        Cursor cursor = db.query(InfoTable.TABLE_NAME, projection, selection, selectionArgs, null,
+                null, null);
+        cursor.moveToFirst();
+        if (cursor.getCount() == 0) {
+            cursor.close();
+            return null;
+        }
+        String value = cursor.getString(0);
+        return value;
+    }
+
+    /**
+     * 增加列
+     * @param tableName
+     * @param columnsInfo
+     */
+    public void alterTable(String tableName, HashMap<String, String> columnsInfo) {
+        //1.find the newly added extra columns
+        HashMap<String, String> exColumns = getDifferInfo(tableName, columnsInfo);
+
+        //2.alter the table, 遍历增加列，sqlite每次只能增加一个列
+        for (Map.Entry<String, String> entry : exColumns.entrySet()) {
+            String sql = DynamicTable.getAlterSQL(tableName, entry.getKey(), entry.getValue());
+            db.execSQL(sql);
+        }
+    }
+
+    /**
+     * 根据name更新hashcode
+     * @param name
+     * @param newCode
+     */
+    public void updateInfoTableHashCode(String name, String newCode) {
+        // New value for one column
+        ContentValues values = new ContentValues();
+        values.put(InfoTable.HASHCODE, newCode);
+
+        // Which row to update, based on the title
+        String selection = InfoTable.NAME + " LIKE ?";
+        String[] selectionArgs = { name };
+
+        int count = db.update(
+                InfoTable.TABLE_NAME,
+                values,
+                selection,
+                selectionArgs);
+        if (count > 1) {
+            Log.e(TAG,  " hash code of " + name + " is more than 1!");
+        } else {
+            Log.d(TAG, name + "\'s hashcode update successfully ! ");
+        }
+    }
+
+    /**
+     * 找出来增加的列
+     * @param tableName
+     * @param newColumnsInfo
+     * @return
+     */
+    public HashMap<String, String> getDifferInfo(String tableName,
+                                                 HashMap<String, String> newColumnsInfo) {
+        HashMap<String, String> exColumns = new HashMap<>();
+
+        List<String> list = getColumnNames(tableName);
+        for (Map.Entry<String, String> entry : newColumnsInfo.entrySet()) {
+            String key = entry.getKey();
+            if (!isKeyInList(key, list)) {
+                exColumns.put(key, entry.getValue());
+            }
+        }
+
+        return exColumns;
+    }
+
+    private boolean isKeyInList(String key, List<String> list) {
+        for (String str : list) {
+            if (str.equals(key)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public boolean containTable(String tableName) {
@@ -122,10 +212,14 @@ public class SQLiteTableManager implements Closeable{
         return true;
     }
 
-    private String[] getColumnNames(String tableName) {
+    private List getColumnNames(String tableName) {
         Cursor dbCursor = db.query(tableName, null, null, null, null, null, null);
         String[] columnNames = dbCursor.getColumnNames();
-        return columnNames;
+        List list = new ArrayList<String>();
+        for (String str : columnNames) {
+            list.add(str);
+        }
+        return list;
     }
 
     @Override

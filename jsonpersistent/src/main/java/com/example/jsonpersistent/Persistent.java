@@ -1,10 +1,12 @@
 package com.example.jsonpersistent;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.util.Log;
 
 import com.example.jsonpersistent.db.SQLiteDbHelper;
 import com.example.jsonpersistent.db.SQLiteTableManager;
+import com.example.jsonpersistent.db.contract.InfoTable;
 import com.example.jsonpersistent.model.DataObject;
 
 import java.io.Closeable;
@@ -12,6 +14,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by thomasliao on 2017/3/23.
@@ -84,13 +87,10 @@ public class Persistent<T> implements Closeable{
      * @return
      */
     private boolean persistent(DataObject dataObject) {
+        //检查是否需要：1.创建表  2.调整表--表结构有变更
+        maintainTableStructure(dataObject);
+
         String tableName = dataObject.getTableName();
-        //检查是否存在这个表，没有的话要先创建这个表
-        if (!sqliteTableManager.containTable(tableName)) {
-            List columns = dataObject.getColumns();
-            List columnsTypeScript = dataObject.getColumnTypeScript();
-            sqliteTableManager.createTable(tableName, columns, columnsTypeScript);
-        }
         //把数据插进去表里面
         ArrayList<HashMap<String, String>> records = dataObject.getRecords();
         Log.d(TAG, tableName.toString() + " " + records.toString());
@@ -98,5 +98,58 @@ public class Persistent<T> implements Closeable{
             return false;
         }
         return true;
+    }
+
+    /**
+     * 1. 没有表则创建表
+     * 2. 如果表结构有改变则调整表结构
+     *
+     * 没有改变表结构则不执行任何操作
+     * @param dataObject
+     */
+    private void maintainTableStructure(DataObject dataObject) {
+        String tableName = dataObject.getTableName();
+        int newHashCode = getHashCode(tableName, dataObject.getColumnsInfo());
+        //检查是否存在这个表，没有的话要先创建这个表
+        if (!sqliteTableManager.containTable(tableName)) {
+            //创建对象表
+            sqliteTableManager.createTable(tableName, dataObject.getColumnsInfo());
+
+            //往信息表插入一条数据
+            HashMap<String, String> content = new HashMap<>();
+            content.put(InfoTable.CODE, dataObject.getId());
+            content.put(InfoTable.NAME, dataObject.getTableName());
+            content.put(InfoTable.HASHCODE, newHashCode + "");
+            sqliteTableManager.insertTable(InfoTable.TABLE_NAME, content);
+        } else {
+            //从信息表中取出一个数据，然后对比hashcode，判断表结构是否改变了，一般改变都是指增加了一个或者多个字段，
+            //这时候需要alter表
+            String oldHashCode = sqliteTableManager.getHashCodeFromInfoTable(dataObject.getId());
+
+            //对比是否有变化
+            if (!oldHashCode.equals(newHashCode + "")) {
+                Log.d(TAG, "table : " + tableName + " is changed");
+                //1. alter table
+                sqliteTableManager.alterTable(tableName, dataObject.getColumnsInfo());
+                //2. update hashcode record
+                sqliteTableManager.updateInfoTableHashCode(tableName, newHashCode + "");
+            }
+        }
+    }
+
+    /**
+     * 生成HashMap的一个hashcode
+     * @param hashMap
+     * @return
+     */
+    private int getHashCode(String tableName, HashMap<String, String> hashMap) {
+        String target = tableName;
+        for (Map.Entry<String, String> entry : hashMap.entrySet()) {
+            String key = entry.getKey();
+            String value = entry.getValue();
+            target += key;
+            target += value;
+        }
+        return target.hashCode();
     }
 }

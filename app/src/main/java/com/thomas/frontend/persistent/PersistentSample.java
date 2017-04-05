@@ -123,7 +123,7 @@ public class PersistentSample {
                 hashMap.put(ADDITIONAL_UPDATETIME, time +"");
             }
 
-            DataObject dataObject = new DataObject(tableName, description, rebuild, allColumnsName,
+            DataObject dataObject = new DataObject(code, tableName, description, rebuild, allColumnsName,
                     allColumnsTypeScript, records);
             return dataObject;
         }

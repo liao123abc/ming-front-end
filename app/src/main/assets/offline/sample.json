@@ -150,6 +150,83 @@
           "d": "14" // 值value
         }
       ]
+    },
+
+    {
+      "rebuild":"0",
+      "timestamp":"10",
+      "objectcode": "004", //离线模型对应的业务对象code
+      "tablename": "pl_location", // 表名
+      "columns":[
+        {
+          "name": "a", // 字段名
+          "typescript": "VAR" // 字段类型脚本(sqlite语法脚本)
+        },
+        {
+          "name": "b", // 字段名
+          "typescript": "TEXT" // 字段类型脚本(sqlite语法脚本)
+        },
+        {
+          "name": "d", // 字段名
+          "typescript": "VAR" // 字段类型脚本(sqlite语法脚本)
+        },
+        {
+          "name": "c", // 字段名
+          "typescript": "VAR" // 字段类型脚本(sqlite语法脚本)
+        },
+        {
+          "name": "e", // 字段名
+          "typescript": "VAR" // 字段类型脚本(sqlite语法脚本)
+        }
+      ],
+      "records":[
+        {
+          "a": "11", // 值value
+          "b": "12", // 值value
+          "c": "13", // 值value
+          "d": "14", // 值value
+          "e": "18"
+        }
+      ]
+    },
+
+
+    {
+      "rebuild":"0",
+      "timestamp":"10",
+      "objectcode": "005", //离线模型对应的业务对象code
+      "tablename": "pl_lasdfadon", // 表名
+      "columns":[
+        {
+          "name": "a", // 字段名
+          "typescript": "VAR" // 字段类型脚本(sqlite语法脚本)
+        },
+        {
+          "name": "b", // 字段名
+          "typescript": "TEXT" // 字段类型脚本(sqlite语法脚本)
+        },
+        {
+          "name": "d", // 字段名
+          "typescript": "VAR" // 字段类型脚本(sqlite语法脚本)
+        },
+        {
+          "name": "c", // 字段名
+          "typescript": "VAR" // 字段类型脚本(sqlite语法脚本)
+        },
+        {
+          "name": "e", // 字段名
+          "typescript": "VAR" // 字段类型脚本(sqlite语法脚本)
+        }
+      ],
+      "records":[
+        {
+          "a": "11", // 值value
+          "b": "12", // 值value
+          "c": "13", // 值value
+          "d": "14", // 值value
+          "e": "18"
+        }
+      ]
     }
 
   ]

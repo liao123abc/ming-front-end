@@ -11,6 +11,14 @@
         {
             "objectcode": "003", // 离线对象code
             "offlinemodelname": "lucy" // 名称
+        },
+        {
+          "objectcode": "004", // 离线对象code
+          "offlinemodelname": "tommy" // 名称
+        },
+        {
+            "objectcode": "005", // 离线对象code
+            "offlinemodelname": "benny" // 名称
         }
     ]
 }

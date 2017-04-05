@@ -32,7 +32,7 @@ public class SQLiteDbHelper extends SQLiteOpenHelper {
      */
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(InfoTable.SQL_CREATE);
+        db.execSQL(InfoTable.CREATE_INFO_TABLE_SQL);
     }
 
     /**
@@ -40,7 +40,7 @@ public class SQLiteDbHelper extends SQLiteOpenHelper {
      */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL(InfoTable.SQL_DELETE);
+        db.execSQL(InfoTable.DELETE_INFO_TABLE_SQL);
         onCreate(db);
     }
 }

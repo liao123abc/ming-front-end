@@ -11,29 +11,28 @@ import java.util.HashMap;
 public class DataObject {
     private String tableName;
     private String description;//object name
+    private String id;
     private boolean rebuild;
-    private ArrayList<String> columns;
-    private ArrayList<String> columnTypeScript;
+    private HashMap<String, String> columnsInfo = new HashMap<>();
     private ArrayList<HashMap<String, String>> records;//一个或者多个记录
-
     public String getTableName() {
         return tableName;
-    }
-
-    public ArrayList<String> getColumns() {
-        return columns;
     }
 
     public ArrayList<HashMap<String, String>> getRecords() {
         return records;
     }
 
-    public ArrayList<String> getColumnTypeScript() {
-        return columnTypeScript;
-    }
-
     public boolean isRebuild() {
         return rebuild;
+    }
+
+    public HashMap<String, String> getColumnsInfo() {
+        return columnsInfo;
+    }
+
+    public String getId() {
+        return id;
     }
 
     /**
@@ -45,17 +44,20 @@ public class DataObject {
      * @param columnTypeScript  列的类型
      * @param records    数据记录
      */
-    public DataObject(String tableName,
+    public DataObject(String id,
+                      String tableName,
                       String description,
                       boolean rebuild,
                       ArrayList<String> columns,
                       ArrayList<String> columnTypeScript,
                       ArrayList<HashMap<String, String>> records) {
+        this.id = id;
         this.tableName = tableName;
         this.description = description;
         this.rebuild = rebuild;
-        this.columnTypeScript = columnTypeScript;
-        this.columns = columns;
+        for (int i = 0; i < columns.size(); i++) {
+            columnsInfo.put(columns.get(i), columnTypeScript.get(i));
+        }
         this.records = records;
     }
 }
