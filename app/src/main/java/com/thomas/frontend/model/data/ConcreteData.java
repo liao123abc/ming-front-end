@@ -1,11 +1,9 @@
 package com.thomas.frontend.model.data;
 
 import com.google.gson.annotations.SerializedName;
-import com.thomas.frontend.model.data.Record;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -17,7 +15,7 @@ import java.util.Map;
  * 增：alter Table add column
  * 删：不用处理，服务器返回来的数据没有这个字段，手机表对应该字段的值为null
  * 改：allin为1， 删除整个本地表在重新建该表
- * 查：~~~ 不存在这个操作，服务器不会查询手机端的字段
+ * 查：服务器不会查询手机端的字段， 手机端会自己查询表
  *
  */
 
